@@ -61,55 +61,6 @@
   }
 }
 
-/* Partner marquee animation styles */
-.partner-marquee {
-  position: relative;
-  overflow: hidden;
-  /* optional tuneables */
-  --partner-duration: 28s;
-  --partner-gap: 2.5rem; /* matches ~px spacing used in the boxes */
-}
-
-/* lane holds two identical tracks side-by-side */
-.partner-lane {
-  display: flex;
-  width: max-content;
-}
-
-/* each track is one full sequence of logos */
-.partner-track {
-  display: flex;
-  flex-wrap: nowrap; /* force horizontal */
-  align-items: center;
-  gap: var(--partner-gap);
-  min-width: max-content;
-  will-change: transform;
-  animation: scroll-x var(--partner-duration) linear infinite;
-}
-
-/* second track starts “already in place” to avoid initial gap */
-.partner-track--dup {
-  animation-delay: calc(var(--partner-duration) / -2);
-}
-
-/* continuous right-to-left */
-@keyframes scroll-x {
-  from {
-    transform: translateX(0);
-  }
-  to {
-    transform: translateX(-100%);
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .partner-track,
-  .partner-track--dup {
-    animation: none !important;
-    transform: none !important;
-  }
-}
-
 .animate-in {
   animation: animate-in 0.5s ease-out;
 }

@@ -141,66 +141,33 @@ export default function LandingPage() {
             <div className="flex flex-col items-center justify-center space-y-4 text-center">
               <p className="text-sm font-medium text-muted-foreground">Our Partners</p>
 
-              <div className="partner-marquee w-full h-28 md:h-32">
-                {(() => {
-                  const partners = [
-                    { src: "/images/partners/datalogic.jpg", alt: "Datalogic" },
-                    { src: "/images/partners/compuprint-srl.jpg", alt: "Compuprint" },
-                    { src: "/images/partners/digital-check.png", alt: "Digital Check" },
-                    { src: "/images/partners/fujitsu.svg", alt: "Fujitsu" },
-                    { src: "/images/partners/globalis.png", alt: "Globalis" },
-                    { src: "/images/partners/nantian.png", alt: "Nantian" },
-                    { src: "/images/partners/printronix.png", alt: "Printronix" },
-                    { src: "/images/partners/tallygenicom.png", alt: "TallyGenicom" },
-                    { src: "/images/partners/troy.png", alt: "Troy" },
-                    { src: "/images/partners/tsc.png", alt: "TSC" },
-                  ]
-
-                  // duplicate list for seamless loop
-                  const dup = [...partners]
-
-                  return (
-                    <div className="partner-lane">
-                      <div className="partner-track flex flex-nowrap items-center">
-                        {partners.map((p, idx) => (
-                          <div
-                            key={`partner-${idx}`}
-                            className="flex h-24 md:h-28 w-48 md:w-56 items-center justify-center px-6 shrink-0"
-                          >
-                            <Image
-                              src={p.src || "/placeholder.svg?height=80&width=160&query=partner%20logo%20placeholder"}
-                              alt={p.alt}
-                              width={200}
-                              height={80}
-                              className="h-16 md:h-20 w-auto object-contain"
-                              priority={idx === 0}
-                            />
-                          </div>
-                        ))}
-                      </div>
-
-                      <div
-                        className="partner-track partner-track--dup flex flex-nowrap items-center"
-                        aria-hidden="true"
-                      >
-                        {dup.map((p, idx) => (
-                          <div
-                            key={`partner-dup-${idx}`}
-                            className="flex h-24 md:h-28 w-48 md:w-56 items-center justify-center px-6 shrink-0"
-                          >
-                            <Image
-                              src={p.src || "/placeholder.svg?height=80&width=160&query=partner%20logo%20placeholder"}
-                              alt={p.alt}
-                              width={200}
-                              height={80}
-                              className="h-16 md:h-20 w-auto object-contain"
-                            />
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  )
-                })()}
+              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 items-center justify-items-center max-w-6xl mx-auto">
+                {[
+                  { src: "/images/partners/datalogic.jpg", alt: "Datalogic" },
+                  { src: "/images/partners/compuprint-srl.jpg", alt: "Compuprint" },
+                  { src: "/images/partners/digital-check.png", alt: "Digital Check" },
+                  { src: "/images/partners/fujitsu.svg", alt: "Fujitsu" },
+                  { src: "/images/partners/globalis.png", alt: "Globalis" },
+                  { src: "/images/partners/nantian.png", alt: "Nantian" },
+                  { src: "/images/partners/printronix.png", alt: "Printronix" },
+                  { src: "/images/partners/tallygenicom.png", alt: "TallyGenicom" },
+                  { src: "/images/partners/troy.png", alt: "Troy" },
+                  { src: "/images/partners/tsc.png", alt: "TSC" },
+                ].map((partner, idx) => (
+                  <div
+                    key={`partner-${idx}`}
+                    className="flex h-20 md:h-24 w-32 md:w-40 items-center justify-center"
+                  >
+                    <Image
+                      src={partner.src || "/placeholder.svg?height=80&width=160&query=partner%20logo%20placeholder"}
+                      alt={partner.alt}
+                      width={200}
+                      height={80}
+                      className="h-12 md:h-16 w-auto object-contain"
+                      priority={idx < 5}
+                    />
+                  </div>
+                ))}
               </div>
             </div>
           </div>
