@@ -2,7 +2,7 @@
 import Link from "next/link"
 import Image from "next/image"
 import { motion } from "framer-motion"
-import { Check, ArrowRight, Zap, Shield, Users, BarChart, Layers, Star } from "lucide-react"
+import { Check, ArrowRight, Zap, Shield, Users, ChartBar as BarChart, Layers, Star } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { Card, CardContent } from "@/components/ui/card"
