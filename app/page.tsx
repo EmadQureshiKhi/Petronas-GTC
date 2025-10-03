@@ -141,7 +141,7 @@ export default function LandingPage() {
             <div className="flex flex-col items-center justify-center space-y-4 text-center">
               <p className="text-sm font-medium text-muted-foreground">Our Partners</p>
 
-              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 items-center justify-items-center max-w-6xl mx-auto">
+              <div className="flex flex-wrap items-center justify-center gap-6 md:gap-8 lg:gap-12 max-w-7xl mx-auto">
                 {[
                   { src: "/images/partners/datalogic.jpg", alt: "Datalogic" },
                   { src: "/images/partners/compuprint-srl.jpg", alt: "Compuprint" },
@@ -156,14 +156,14 @@ export default function LandingPage() {
                 ].map((partner, idx) => (
                   <div
                     key={`partner-${idx}`}
-                    className="flex h-20 md:h-24 w-32 md:w-40 items-center justify-center"
+                    className="flex h-16 md:h-20 w-24 md:w-32 lg:w-36 items-center justify-center flex-shrink-0"
                   >
                     <Image
                       src={partner.src || "/placeholder.svg?height=80&width=160&query=partner%20logo%20placeholder"}
                       alt={partner.alt}
                       width={200}
                       height={80}
-                      className="h-12 md:h-16 w-auto object-contain"
+                      className="h-10 md:h-12 lg:h-14 w-auto object-contain"
                       priority={idx < 5}
                     />
                   </div>
