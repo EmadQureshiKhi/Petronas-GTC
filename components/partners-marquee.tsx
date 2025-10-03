@@ -37,15 +37,10 @@ export function PartnersMarquee() {
     <section aria-label="Our Partners" className="py-8 md:py-10 lg:py-12">
       <h2 className="text-center text-xl md:text-2xl lg:text-3xl font-semibold mb-6">Our Partners</h2>
 
-      <div className="relative overflow-hidden">
-        <div className="flex animate-marquee">
-          {logos.map((logo, idx) => (
-            <LogoItem key={`${logo.src}-${idx}`} src={logo.src} alt={logo.alt} />
-          ))}
-          {logos.map((logo, idx) => (
-            <LogoItem key={`dup-${logo.src}-${idx}`} src={logo.src} alt={logo.alt} />
-          ))}
-        </div>
+      <div className="flex flex-wrap justify-center items-center gap-8 md:gap-12 max-w-6xl mx-auto">
+        {logos.map((logo, idx) => (
+          <LogoItem key={`${logo.src}-${idx}`} src={logo.src} alt={logo.alt} />
+        ))}
       </div>
     </section>
   )
