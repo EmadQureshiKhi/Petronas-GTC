@@ -19,7 +19,7 @@ const logos = [
 
 function LogoItem({ src, alt }: { src: string; alt: string }) {
   return (
-    <li className="partners-item flex h-16 md:h-20 lg:h-24 w-[160px] md:w-[200px] lg:w-[240px] items-center justify-center shrink-0">
+    <div className="flex h-16 md:h-20 lg:h-24 w-[160px] md:w-[200px] lg:w-[240px] items-center justify-center shrink-0 mx-6">
       <Image
         src={src || "/placeholder.svg"}
         alt={alt}
@@ -28,41 +28,23 @@ function LogoItem({ src, alt }: { src: string; alt: string }) {
         className="h-12 md:h-14 lg:h-16 w-auto object-contain"
         priority
       />
-    </li>
+    </div>
   )
 }
 
 export function PartnersMarquee() {
-  // duplicated list for seamless loop
-  const dup = [...logos]
-
   return (
     <section aria-label="Our Partners" className="py-8 md:py-10 lg:py-12">
       <h2 className="text-center text-xl md:text-2xl lg:text-3xl font-semibold mb-6">Our Partners</h2>
 
-      <div
-        className="partners-marquee relative overflow-hidden"
-        style={
-          {
-            // adjust duration as needed
-            // @ts-ignore
-            "--partners-duration": "28s",
-            "--partners-gap": "2.5rem",
-          } as React.CSSProperties
-        }
-      >
-        <div className="partners-lane flex">
-          <ul className="partners-track flex items-center">
-            {logos.map((l) => (
-              <LogoItem key={l.src} src={l.src} alt={l.alt} />
-            ))}
-          </ul>
-
-          <ul className="partners-track partners-track--dup flex items-center" aria-hidden="true">
-            {dup.map((l) => (
-              <LogoItem key={`dup-${l.src}`} src={l.src} alt={l.alt} />
-            ))}
-          </ul>
+      <div className="relative overflow-hidden">
+        <div className="flex animate-marquee">
+          {logos.map((logo, idx) => (
+            <LogoItem key={`${logo.src}-${idx}`} src={logo.src} alt={logo.alt} />
+          ))}
+          {logos.map((logo, idx) => (
+            <LogoItem key={`dup-${logo.src}-${idx}`} src={logo.src} alt={logo.alt} />
+          ))}
         </div>
       </div>
     </section>
