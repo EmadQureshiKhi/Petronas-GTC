@@ -192,10 +192,6 @@ export default function ProductsPage() {
                       <Download className="ml-2 size-4 opacity-0 group-hover/btn:opacity-100 transition-opacity" />
                     </Button>
                   </Link>
-                  
-                  <Button variant="outline" className="w-full rounded-full text-sm bg-transparent">
-                    Request Quote
-                  </Button>
                 </div>
               </CardContent>
             </Card>
