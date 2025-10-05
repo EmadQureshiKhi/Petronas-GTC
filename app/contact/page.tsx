@@ -11,26 +11,38 @@ export default function ContactPage() {
     {
       icon: Mail,
       title: "Email Us",
-      details: "hello@saasify.com",
-      description: "Send us an email anytime",
+      details: "sales@petronasgtc.com",
+      description: "Sales inquiries and general questions",
+    },
+    {
+      icon: Mail,
+      title: "Support Email",
+      details: "support@petronasgtc.com",
+      description: "Technical support and assistance",
     },
     {
       icon: Phone,
       title: "Call Us",
-      details: "+1 (555) 123-4567",
-      description: "Mon-Fri from 8am to 6pm",
+      details: "+965 22618183",
+      description: "Main office line",
+    },
+    {
+      icon: Phone,
+      title: "Mobile",
+      details: "+965 99525268",
+      description: "Direct mobile contact",
     },
     {
       icon: MapPin,
       title: "Visit Us",
-      details: "123 Business Ave, Suite 100",
-      description: "San Francisco, CA 94105",
+      details: "Luluwa Bin Khaldoon Complex",
+      description: "First Floor - Office No. 15, Ibn-Khaldoun Street, Hawally, Kuwait",
     },
     {
       icon: Clock,
       title: "Business Hours",
       details: "Monday - Friday",
-      description: "8:00 AM - 6:00 PM PST",
+      description: "8:00 AM - 5:00 PM Kuwait Time",
     },
   ]
 
@@ -45,8 +57,8 @@ export default function ContactPage() {
             Contact <span className="text-primary">Us</span>
           </h1>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Ready to transform your business? Get in touch with our team and let's discuss how SaaSify can help you
-            achieve your goals.
+            Ready to transform your business? Get in touch with our team and let's discuss how Petronas can help you
+            achieve your goals with our professional printing solutions.
           </p>
         </div>
 
@@ -60,36 +72,36 @@ export default function ContactPage() {
               </p>
             </CardHeader>
             <CardContent className="p-0">
-              <form className="space-y-6">
+              <form className="space-y-6" action="mailto:sales@petronasgtc.com" method="post" encType="text/plain">
                 <div className="grid md:grid-cols-2 gap-4">
                   <div className="space-y-2">
                     <Label htmlFor="firstName">First Name</Label>
-                    <Input id="firstName" placeholder="John" />
+                    <Input id="firstName" name="firstName" placeholder="John" required />
                   </div>
                   <div className="space-y-2">
                     <Label htmlFor="lastName">Last Name</Label>
-                    <Input id="lastName" placeholder="Doe" />
+                    <Input id="lastName" name="lastName" placeholder="Doe" required />
                   </div>
                 </div>
 
                 <div className="space-y-2">
                   <Label htmlFor="email">Email</Label>
-                  <Input id="email" type="email" placeholder="john@company.com" />
+                  <Input id="email" name="email" type="email" placeholder="john@company.com" required />
                 </div>
 
                 <div className="space-y-2">
                   <Label htmlFor="company">Company</Label>
-                  <Input id="company" placeholder="Your Company" />
+                  <Input id="company" name="company" placeholder="Your Company" />
                 </div>
 
                 <div className="space-y-2">
                   <Label htmlFor="subject">Subject</Label>
-                  <Input id="subject" placeholder="How can we help you?" />
+                  <Input id="subject" name="subject" placeholder="How can we help you?" required />
                 </div>
 
                 <div className="space-y-2">
                   <Label htmlFor="message">Message</Label>
-                  <Textarea id="message" placeholder="Tell us more about your project or questions..." rows={5} />
+                  <Textarea id="message" name="message" placeholder="Tell us more about your project or questions..." rows={5} required />
                 </div>
 
                 <Button type="submit" size="lg" className="w-full rounded-full">
@@ -105,13 +117,13 @@ export default function ContactPage() {
             <div>
               <h2 className="text-2xl font-bold mb-6">Get in touch</h2>
               <p className="text-muted-foreground mb-8">
-                We're here to help and answer any question you might have. We look forward to hearing from you.
+                We're here to help with all your printing solution needs. Contact us for expert consultation and support.
               </p>
             </div>
 
             <div className="grid gap-6">
               {contactInfo.map((info, index) => (
-                <Card key={index} className="p-6">
+                <Card key={index} className="p-6 hover:shadow-md transition-shadow">
                   <CardContent className="p-0">
                     <div className="flex items-start gap-4">
                       <div className="size-12 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0">
@@ -119,8 +131,8 @@ export default function ContactPage() {
                       </div>
                       <div>
                         <h3 className="font-semibold mb-1">{info.title}</h3>
-                        <p className="font-medium mb-1">{info.details}</p>
-                        <p className="text-sm text-muted-foreground">{info.description}</p>
+                        <p className="font-medium mb-1 text-primary">{info.details}</p>
+                        <p className="text-sm text-muted-foreground leading-relaxed">{info.description}</p>
                       </div>
                     </div>
                   </CardContent>
@@ -128,20 +140,26 @@ export default function ContactPage() {
               ))}
             </div>
 
-            {/* Quick Actions */}
-            <Card className="p-6 bg-primary/5">
+            {/* Google Maps */}
+            <Card className="p-6 bg-muted/30">
               <CardContent className="p-0">
-                <h3 className="font-semibold mb-4">Need immediate assistance?</h3>
-                <div className="space-y-3">
-                  <Button variant="outline" className="w-full justify-start rounded-full bg-transparent">
-                    <Mail className="mr-2 size-4" />
-                    Schedule a Demo
-                  </Button>
-                  <Button variant="outline" className="w-full justify-start rounded-full bg-transparent">
-                    <Phone className="mr-2 size-4" />
-                    Request a Call Back
-                  </Button>
+                <h3 className="font-semibold mb-4">Find Us</h3>
+                <div className="rounded-lg overflow-hidden border border-border/50">
+                  <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3481.8234567890123!2d48.0123456789!3d29.3123456789!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sIbn%20Khaldoun%20Street%2C%20Hawally%2C%20Kuwait!5e0!3m2!1sen!2skw!4v1234567890123!5m2!1sen!2skw"
+                    width="100%"
+                    height="250"
+                    style={{ border: 0 }}
+                    allowFullScreen
+                    loading="lazy"
+                    referrerPolicy="no-referrer-when-downgrade"
+                    title="Petronas Office Location"
+                  />
                 </div>
+                <p className="text-sm text-muted-foreground mt-3">
+                  Petronos Twin Tower Gen. Trad. & Cont. Co - Luluwa Bin Khaldoon Complex<br />
+                  First Floor - Office No. 15 - Ibn-Khaldoun Street - Hawally - Kuwait
+                </p>
               </CardContent>
             </Card>
           </div>
