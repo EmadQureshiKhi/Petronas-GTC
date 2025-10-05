@@ -59,16 +59,10 @@ export default function Navbar() {
             Products
           </Link>
           <Link
-            href="/services"
+            href="/services-clients"
             className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
           >
-            Services
-          </Link>
-          <Link
-            href="/clients"
-            className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
-          >
-            Clients
+            Services & Clients
           </Link>
           <Link
             href="/contact"
@@ -106,11 +100,8 @@ export default function Navbar() {
             <Link href="/products" className="py-2 text-sm font-medium" onClick={() => setMobileMenuOpen(false)}>
               Products
             </Link>
-            <Link href="/services" className="py-2 text-sm font-medium" onClick={() => setMobileMenuOpen(false)}>
-              Services
-            </Link>
-            <Link href="/clients" className="py-2 text-sm font-medium" onClick={() => setMobileMenuOpen(false)}>
-              Clients
+            <Link href="/services-clients" className="py-2 text-sm font-medium" onClick={() => setMobileMenuOpen(false)}>
+              Services & Clients
             </Link>
             <Link href="/contact" className="py-2 text-sm font-medium" onClick={() => setMobileMenuOpen(false)}>
               Contact Us

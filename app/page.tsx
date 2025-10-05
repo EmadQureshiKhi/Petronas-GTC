@@ -347,8 +347,8 @@ export default function LandingPage() {
                   </Link>
                 </li>
                 <li>
-                  <Link href="/services" className="text-muted-foreground hover:text-foreground transition-colors">
-                    Services
+                  <Link href="/services-clients" className="text-muted-foreground hover:text-foreground transition-colors">
+                    Services & Clients
                   </Link>
                 </li>
               </ul>
@@ -356,11 +356,6 @@ export default function LandingPage() {
             <div className="space-y-4">
               <h4 className="text-sm font-bold">More</h4>
               <ul className="space-y-2 text-sm">
-                <li>
-                  <Link href="/clients" className="text-muted-foreground hover:text-foreground transition-colors">
-                    Clients
-                  </Link>
-                </li>
                 <li>
                   <Link href="/contact" className="text-muted-foreground hover:text-foreground transition-colors">
                     Contact Us
