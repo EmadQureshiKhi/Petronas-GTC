@@ -3,7 +3,7 @@
 import { motion } from "framer-motion"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Section, SectionHeader } from "@/components/ui/section"
-import { CheckCircle, Headphones, Code, Rocket, Settings } from "lucide-react"
+import { CircleCheck as CheckCircle, Headphones, Code, Rocket, Settings } from "lucide-react"
 
 export function ServicesGrid() {
   const services = [
