@@ -4,7 +4,7 @@ import type { Metadata } from "next"
 import { ThemeProvider } from "@/components/theme-provider"
 
 export const metadata: Metadata = {
-  title: "SaaSify - Streamline Your Workflow",
+  title: "Petronas - Kuwait",
   description: "Boost productivity, reduce costs, and scale your business with our all-in-one SaaS platform.",
     
 }
