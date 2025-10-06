@@ -6,7 +6,7 @@ import { ThemeProvider } from "@/components/theme-provider"
 export const metadata: Metadata = {
   title: "SaaSify - Streamline Your Workflow",
   description: "Boost productivity, reduce costs, and scale your business with our all-in-one SaaS platform.",
-    generator: 'v0.app'
+    
 }
 
 export default function RootLayout({
