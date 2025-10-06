@@ -5,7 +5,7 @@ import { ThemeProvider } from "@/components/theme-provider"
 
 export const metadata: Metadata = {
   title: "Petronas - Kuwait",
-  description: "Boost productivity, reduce costs, and scale your business with our all-in-one SaaS platform.",
+  description: "Your Trusted Partner in Business Excellence",
     
 }
 
