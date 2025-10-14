@@ -52,8 +52,8 @@ END:VCARD`
 
   return (
     <div className="min-h-screen bg-white overflow-x-hidden">
-      <div className="relative h-72 sm:h-80 bg-white overflow-hidden">
-        <div className="absolute inset-0 flex items-center justify-center">
+      <div className="relative bg-white pt-8 pb-24 sm:pb-28">
+        <div className="flex items-center justify-center py-8">
           <Image
             src="/images/design-mode/Untitled-design-11-removebg-preview.png"
             alt="Petronas Background"
@@ -63,7 +63,7 @@ END:VCARD`
           />
         </div>
 
-        <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-1/2 z-20">
+        <div className="flex justify-center">
           <div className="w-36 h-36 sm:w-40 sm:h-40 rounded-full overflow-hidden shadow-2xl border-4 border-white bg-gray-100">
             <Image
               src="https://res.cloudinary.com/duou73d4i/image/upload/v1760456193/pit_mansoor_qureshi_yj5w4v.jpg"
@@ -74,11 +74,9 @@ END:VCARD`
             />
           </div>
         </div>
-
-        <div className="absolute bottom-0 left-0 w-full h-8 bg-gradient-to-b from-transparent to-white"></div>
       </div>
 
-      <div className="px-4 sm:px-6 pt-20 sm:pt-24 pb-8 max-w-lg mx-auto">
+      <div className="px-4 sm:px-6 pb-8 max-w-lg mx-auto">
         <div className="text-center mb-8">
           <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-2">Mansoor Qureshi</h1>
           <div className="flex items-center justify-center gap-2 mb-2">
