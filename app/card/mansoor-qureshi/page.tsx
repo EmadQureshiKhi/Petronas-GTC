@@ -195,7 +195,7 @@ END:VCARD`
                 <p className="text-gray-900 font-medium leading-relaxed">
                   Khulaifi Complex, 1st Floor, Office no 6.<br />
                   Ibn Khaldoun Street, Block 2,<br />
-                  Hawally, Kuwait
+                  Hawally, Kuwait.
                 </p>
               </div>
             </div>
