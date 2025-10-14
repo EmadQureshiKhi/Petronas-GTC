@@ -28,9 +28,10 @@ export default function MansoorQureshiCard() {
   }
 
   const handleAddToContacts = () => {
-    const vCardData = `BEGIN:VCARD
+  const vCardData = `BEGIN:VCARD
 VERSION:3.0
-FN:Mansoor Qureshi Petronas Kuwait
+N:Qureshi;Mansoor;;;
+FN:Mansoor Qureshi
 ORG:PETRONAS KUWAIT
 TITLE:Managing Director
 TEL;TYPE=CELL:+965 99525268
@@ -39,16 +40,16 @@ EMAIL:sales@petronasgtc.com
 URL:https://www.petronasgtc.com/
 END:VCARD`
 
-    const blob = new Blob([vCardData], { type: 'text/vcard' })
-    const url = window.URL.createObjectURL(blob)
-    const link = document.createElement('a')
-    link.href = url
-    link.download = 'MANSOOR_QURESHI_PETRONAS_KUWAIT.vcf'
-    document.body.appendChild(link)
-    link.click()
-    document.body.removeChild(link)
-    window.URL.revokeObjectURL(url)
-  }
+  const blob = new Blob([vCardData], { type: 'text/vcard' })
+  const url = window.URL.createObjectURL(blob)
+  const link = document.createElement('a')
+  link.href = url
+  link.download = 'MANSOOR_QURESHI_PETRONAS_KUWAIT.vcf'
+  document.body.appendChild(link)
+  link.click()
+  document.body.removeChild(link)
+  window.URL.revokeObjectURL(url)
+}
 
   return (
     <div className="min-h-screen bg-white overflow-x-hidden">
