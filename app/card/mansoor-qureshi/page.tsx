@@ -51,8 +51,8 @@ END:VCARD`
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 overflow-x-hidden">
-      <div className="relative bg-white pt-8">
+    <div className="min-h-screen bg-white overflow-x-hidden">
+      <div className="relative bg-white">
         <div className="flex items-center justify-center py-8">
           <Image
             src="/images/design-mode/Untitled-design-11-removebg-preview.png"
@@ -64,17 +64,17 @@ END:VCARD`
         </div>
 
         <div className="w-full h-px bg-gray-200"></div>
-      </div>
 
-      <div className="flex justify-center -mt-20 sm:-mt-24 pb-4">
-        <div className="w-36 h-36 sm:w-44 sm:h-44 rounded-full overflow-hidden shadow-2xl border-4 border-white bg-gray-100">
-          <Image
-            src="https://res.cloudinary.com/duou73d4i/image/upload/v1760456193/pit_mansoor_qureshi_yj5w4v.jpg"
-            alt="Mansoor Qureshi"
-            width={176}
-            height={176}
-            className="w-full h-full object-cover object-center"
-          />
+        <div className="flex justify-center -mt-20 sm:-mt-24 pb-4">
+          <div className="w-36 h-36 sm:w-44 sm:h-44 rounded-full overflow-hidden shadow-2xl border-4 border-white bg-gray-100">
+            <Image
+              src="https://res.cloudinary.com/duou73d4i/image/upload/v1760456193/pit_mansoor_qureshi_yj5w4v.jpg"
+              alt="Mansoor Qureshi"
+              width={176}
+              height={176}
+              className="w-full h-full object-cover object-center"
+            />
+          </div>
         </div>
       </div>
 
