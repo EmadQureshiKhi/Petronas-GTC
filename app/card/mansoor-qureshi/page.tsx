@@ -1,7 +1,8 @@
+// Virtual business card page
 'use client'
 
 import Image from "next/image"
-import { Phone, Mail, Globe, Plus, Smartphone, PhoneCall, MapPin, Briefcase } from "lucide-react"
+import { Phone, Mail, Globe, Plus, Smartphone, PhoneCall, MapPin, Briefcase, Headset } from "lucide-react"
 import { Card, CardContent } from "@/components/ui/card"
 
 export default function MansoorQureshiCard() {
@@ -94,7 +95,7 @@ END:VCARD`
             onClick={() => handleCall('+965 99525268')}
             className="flex flex-col items-center gap-2 group"
           >
-            <div className="w-16 h-16 sm:w-18 sm:h-18 bg-gradient-to-br from-gray-900 to-gray-700 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform shadow-lg">
+            <div className="w-16 h-16 sm:w-18 sm:h-18 bg-gradient-to-br from-green-600 to-green-500 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform shadow-lg">
               <Smartphone className="w-7 h-7 text-white" />
             </div>
             <span className="text-xs font-medium text-gray-600">Mobile</span>
@@ -112,8 +113,8 @@ END:VCARD`
             onClick={() => handleCall('+965 22618183')}
             className="flex flex-col items-center gap-2 group"
           >
-            <div className="w-16 h-16 sm:w-18 sm:h-18 bg-gradient-to-br from-green-600 to-green-500 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform shadow-lg">
-              <PhoneCall className="w-7 h-7 text-white" />
+            <div className="w-16 h-16 sm:w-18 sm:h-18 bg-gradient-to-br from-gray-900 to-gray-700 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform shadow-lg">
+              <Headset className="w-7 h-7 text-white" />
             </div>
             <span className="text-xs font-medium text-gray-600">Office</span>
           </button>
