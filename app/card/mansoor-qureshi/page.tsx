@@ -57,9 +57,9 @@ END:VCARD`
           <Image
             src="/images/design-mode/Untitled-design-11-removebg-preview.png"
             alt="Petronas Background"
-            width={600}
-            height={300}
-            className="w-full h-auto transform scale-125"
+            width={400}
+            height={200}
+            className="w-80 h-auto"
           />
         </div>
         
@@ -70,8 +70,8 @@ END:VCARD`
           opacity: 0.03
         }}></div>
 
-        {/* Profile Image - Properly Positioned */}
-        <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-1/2 z-20">
+        {/* Profile Image - Fixed Positioning */}
+        <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-16 z-20">
           <div className="w-32 h-32 rounded-full overflow-hidden shadow-2xl border-4 border-white bg-white">
             <Image
               src="https://res.cloudinary.com/duou73d4i/image/upload/v1760456193/pit_mansoor_qureshi_yj5w4v.jpg"
