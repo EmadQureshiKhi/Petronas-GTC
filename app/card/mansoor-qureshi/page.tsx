@@ -49,39 +49,28 @@ END:VCARD`
   }
 
   return (
-    <div className="min-h-screen bg-gray-100 overflow-x-hidden">
+    <div className="min-h-screen bg-white overflow-x-hidden">
       {/* Hero Section with Large Background Logo */}
-      <div className="relative h-80 bg-gradient-to-br from-gray-900 to-gray-700 overflow-hidden">
-        {/* Large Background Logo with Effects */}
-        <div className="absolute inset-0 flex items-center justify-center opacity-10">
+      <div className="relative h-80 bg-white overflow-hidden">
+        {/* Large Background Logo with Dotted Effect */}
+        <div className="absolute inset-0 flex items-center justify-center opacity-5">
           <Image
             src="/images/design-mode/Untitled-design-11-removebg-preview.png"
             alt="Petronas Background"
-            width={400}
-            height={200}
-            className="w-96 h-auto transform scale-150 rotate-12"
+            width={600}
+            height={300}
+            className="w-full h-auto transform scale-125"
           />
         </div>
         
-        {/* Decorative Elements */}
-        <div className="absolute top-0 left-0 w-full h-full">
-          <div className="absolute top-10 left-10 w-20 h-20 border-2 border-white/20 rounded-full"></div>
-          <div className="absolute top-20 right-16 w-12 h-12 border border-white/30 rotate-45"></div>
-          <div className="absolute bottom-16 left-20 w-8 h-8 bg-white/10 rounded-full"></div>
-        </div>
+        {/* Dotted Pattern Overlay */}
+        <div className="absolute inset-0" style={{
+          backgroundImage: 'radial-gradient(circle, #000 1px, transparent 1px)',
+          backgroundSize: '20px 20px',
+          opacity: 0.03
+        }}></div>
 
-        {/* Company Logo */}
-        <div className="absolute top-8 left-1/2 transform -translate-x-1/2 z-10">
-          <Image
-            src="/images/design-mode/Untitled-design-11-removebg-preview.png"
-            alt="Petronas Logo"
-            width={200}
-            height={80}
-            className="h-16 w-auto filter brightness-0 invert"
-          />
-        </div>
-
-        {/* Profile Image */}
+        {/* Profile Image - Properly Positioned */}
         <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-1/2 z-20">
           <div className="w-32 h-32 rounded-full overflow-hidden shadow-2xl border-4 border-white bg-white">
             <Image
@@ -95,7 +84,7 @@ END:VCARD`
         </div>
 
         {/* Torn Paper Effect */}
-        <div className="absolute bottom-0 left-0 w-full h-8 bg-gray-100">
+        <div className="absolute bottom-0 left-0 w-full h-8 bg-white">
           <svg
             className="absolute top-0 left-0 w-full h-8"
             viewBox="0 0 1200 40"
@@ -104,7 +93,7 @@ END:VCARD`
             <path
               d="M0,40 L0,8 Q150,0 300,8 T600,8 Q750,0 900,8 T1200,8 L1200,40 Z"
               fill="currentColor"
-              className="text-gray-100"
+              className="text-white"
             />
           </svg>
         </div>
@@ -178,11 +167,6 @@ END:VCARD`
                 <p className="text-gray-900 font-bold text-lg">Webpage</p>
                 <p className="text-gray-600">Visit our website</p>
               </div>
-              <div className="text-gray-400">
-                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                </svg>
-              </div>
             </button>
           </CardContent>
         </Card>
@@ -197,7 +181,7 @@ END:VCARD`
             </button>
             <button className="w-14 h-14 bg-black rounded-full flex items-center justify-center shadow-lg">
               <svg className="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16l-4-4m0 0l4-4m-4 4h18" />
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.367 2.684 3 3 0 00-5.367-2.684z" />
               </svg>
             </button>
           </div>
