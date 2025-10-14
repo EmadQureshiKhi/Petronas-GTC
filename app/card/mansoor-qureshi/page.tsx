@@ -52,7 +52,7 @@ END:VCARD`
 
   return (
     <div className="min-h-screen bg-gray-50 overflow-x-hidden">
-      <div className="relative bg-white">
+      <div className="relative bg-white pt-8">
         <div className="flex items-center justify-center py-8">
           <Image
             src="/images/design-mode/Untitled-design-11-removebg-preview.png"
