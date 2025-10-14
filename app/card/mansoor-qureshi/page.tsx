@@ -30,7 +30,7 @@ export default function MansoorQureshiCard() {
   const handleAddToContacts = () => {
     const vCardData = `BEGIN:VCARD
 VERSION:3.0
-FN:MANSOOR QURESHI
+FN:Mansoor Qureshi Petronas Kuwait
 ORG:PETRONAS KUWAIT
 TITLE:Managing Director
 TEL;TYPE=CELL:+965 99525268
