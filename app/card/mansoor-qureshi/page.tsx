@@ -1,4 +1,3 @@
-// Virtual business card page
 'use client'
 
 import Image from "next/image"
@@ -96,7 +95,7 @@ END:VCARD`
             className="flex flex-col items-center gap-2 group"
           >
             <div className="w-16 h-16 sm:w-18 sm:h-18 bg-gradient-to-br from-green-600 to-green-500 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform shadow-lg">
-              <Smartphone className="w-7 h-7 text-white" />
+              <PhoneCall className="w-7 h-7 text-white" />
             </div>
             <span className="text-xs font-medium text-gray-600">Mobile</span>
           </button>
