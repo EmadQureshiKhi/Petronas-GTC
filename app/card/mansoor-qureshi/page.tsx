@@ -20,8 +20,8 @@ export default function MansoorQureshiCard() {
   const handleShare = () => {
     if (navigator.share) {
       navigator.share({
-        title: 'Mansoor Qureshi - Petronas Kuwait',
-        text: 'Managing Director at Petronas Kuwait',
+        title: 'MANSOOR QURESHI - PETRONAS KUWAIT',
+        text: 'Managing Director at PETRONAS KUWAIT',
         url: window.location.href,
       })
     }
@@ -30,8 +30,8 @@ export default function MansoorQureshiCard() {
   const handleAddToContacts = () => {
     const vCardData = `BEGIN:VCARD
 VERSION:3.0
-FN:Mansoor Qureshi
-ORG:Petronas Kuwait
+FN:MANSOOR QURESHI
+ORG:PETRONAS KUWAIT
 TITLE:Managing Director
 TEL;TYPE=CELL:+965 99525268
 TEL;TYPE=WORK:+965 22618183
@@ -43,7 +43,7 @@ END:VCARD`
     const url = window.URL.createObjectURL(blob)
     const link = document.createElement('a')
     link.href = url
-    link.download = 'Mansoor_Qureshi_Petronas.vcf'
+    link.download = 'MANSOOR_QURESHI_PETRONAS_KUWAIT.vcf'
     document.body.appendChild(link)
     link.click()
     document.body.removeChild(link)
