@@ -193,8 +193,8 @@ END:VCARD`
               <div>
                 <p className="text-gray-500 text-sm font-medium mb-1">Location</p>
                 <p className="text-gray-900 font-medium leading-relaxed">
-                  Luluwa Bin Khaldoon Complex, First Floor<br />
-                  Office No. 15, Ibn-Khaldoun Street<br />
+                  Khulaifi Complex, 1st Floor, Office no 6.<br />
+                  Ibn Khaldoun Street, Block 2,<br />
                   Hawally, Kuwait
                 </p>
               </div>
