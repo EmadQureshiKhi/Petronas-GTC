@@ -53,13 +53,13 @@ END:VCARD`
       {/* Hero Section with Large Background Logo */}
       <div className="relative h-80 bg-white overflow-hidden">
         {/* Large Background Logo with Dotted Effect */}
-        <div className="absolute inset-0 flex items-center justify-center opacity-5">
+        <div className="absolute inset-0 flex items-center justify-center opacity-20">
           <Image
             src="/images/design-mode/Untitled-design-11-removebg-preview.png"
             alt="Petronas Background"
-            width={400}
-            height={200}
-            className="w-80 h-auto"
+            width={500}
+            height={250}
+            className="w-96 h-auto"
           />
         </div>
         
@@ -71,7 +71,7 @@ END:VCARD`
         }}></div>
 
         {/* Profile Image - Fixed Positioning */}
-        <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-16 z-20">
+        <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-1/2 z-20">
           <div className="w-32 h-32 rounded-full overflow-hidden shadow-2xl border-4 border-white bg-white">
             <Image
               src="https://res.cloudinary.com/duou73d4i/image/upload/v1760456193/pit_mansoor_qureshi_yj5w4v.jpg"
@@ -100,7 +100,7 @@ END:VCARD`
       </div>
 
       {/* Main Content */}
-      <div className="px-6 pt-20 pb-8">
+      <div className="px-6 pt-24 pb-8">
         {/* Name and Title */}
         <div className="text-center mb-8">
           <h1 className="text-3xl font-bold text-gray-900 mb-2">Mansoor Qureshi</h1>
