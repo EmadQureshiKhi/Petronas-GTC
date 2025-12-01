@@ -359,7 +359,7 @@ export default function LandingPage() {
                       <motion.div 
                         whileHover={{ scale: 1.1, rotate: 5 }}
                         transition={{ type: "spring", stiffness: 300 }}
-                        className={`size-14 rounded-2xl bg-gradient-to-br ${feature.gradient} flex items-center justify-center text-white mb-6 shadow-lg`}
+                        className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${feature.gradient} flex items-center justify-center text-white mb-6 shadow-lg flex-shrink-0`}
                       >
                         {feature.icon}
                       </motion.div>
@@ -426,10 +426,10 @@ export default function LandingPage() {
                     transition={{ type: "spring", stiffness: 300 }}
                     className="relative mb-8"
                   >
-                    <div className="size-20 md:size-24 rounded-3xl bg-gradient-to-br from-primary to-blue-600 text-primary-foreground flex items-center justify-center text-2xl md:text-3xl font-bold shadow-xl shadow-primary/25 group-hover:shadow-2xl group-hover:shadow-primary/30 transition-shadow duration-300">
+                    <div className="w-20 h-20 md:w-24 md:h-24 rounded-3xl bg-gradient-to-br from-primary to-blue-600 text-primary-foreground flex items-center justify-center text-2xl md:text-3xl font-bold shadow-xl shadow-primary/25 group-hover:shadow-2xl group-hover:shadow-primary/30 transition-shadow duration-300 flex-shrink-0">
                       {step.step}
                     </div>
-                    <div className="absolute -bottom-2 -right-2 size-8 rounded-full bg-background border-2 border-primary flex items-center justify-center">
+                    <div className="absolute -bottom-3 -right-3 w-10 h-10 rounded-full bg-background border-2 border-primary flex items-center justify-center flex-shrink-0">
                       {step.icon}
                     </div>
                   </motion.div>
