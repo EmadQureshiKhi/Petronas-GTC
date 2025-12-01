@@ -1,214 +1,374 @@
 "use client"
+
+import { useRef } from "react"
 import Link from "next/link"
 import Image from "next/image"
-import { motion } from "framer-motion"
-import { Check, ArrowRight, Zap, Shield, Users, ChartBar as BarChart, Layers, Star } from "lucide-react"
+import { motion, useScroll, useTransform, useInView } from "framer-motion"
+import { 
+  Check, 
+  ArrowRight, 
+  Zap, 
+  Shield, 
+  Users, 
+  ChartBar as BarChart, 
+  Layers, 
+  Star,
+  Sparkles,
+  Target,
+  Award,
+  Globe
+} from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { Card, CardContent } from "@/components/ui/card"
 import Navbar from "@/components/navbar"
 
 export default function LandingPage() {
-  const container = {
+  const heroRef = useRef(null)
+  const featuresRef = useRef(null)
+  const processRef = useRef(null)
+  const ctaRef = useRef(null)
+  
+  const isHeroInView = useInView(heroRef, { once: true })
+  const isFeaturesInView = useInView(featuresRef, { once: true, margin: "-100px" })
+  const isProcessInView = useInView(processRef, { once: true, margin: "-100px" })
+  const isCtaInView = useInView(ctaRef, { once: true, margin: "-100px" })
+
+  const { scrollYProgress } = useScroll()
+  const backgroundY = useTransform(scrollYProgress, [0, 1], ["0%", "50%"])
+
+  const containerVariants = {
     hidden: { opacity: 0 },
-    show: {
+    visible: {
       opacity: 1,
       transition: {
         staggerChildren: 0.1,
+        delayChildren: 0.2,
       },
     },
   }
 
-  const item = {
-    hidden: { opacity: 0, y: 20 },
-    show: { opacity: 1, y: 0 },
+  const itemVariants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: { 
+      opacity: 1, 
+      y: 0,
+      transition: {
+        type: "spring" as const,
+        stiffness: 100,
+        damping: 12,
+      }
+    },
   }
+
+  const fadeInUp = {
+    hidden: { opacity: 0, y: 40 },
+    visible: { 
+      opacity: 1, 
+      y: 0,
+      transition: {
+        duration: 0.8,
+        ease: [0.25, 0.46, 0.45, 0.94] as const,
+      }
+    },
+  }
+
 
   const features = [
     {
       title: "Industry Expertise",
       description: "Deep understanding of industry challenges with tailored solutions for your specific needs.",
-      icon: <Zap className="size-5" />,
+      icon: <Target className="size-6" />,
+      gradient: "from-blue-500 to-cyan-500",
     },
     {
       title: "Proven Results",
       description: "Track record of successful implementations and measurable business outcomes.",
-      icon: <BarChart className="size-5" />,
+      icon: <BarChart className="size-6" />,
+      gradient: "from-violet-500 to-purple-500",
     },
     {
       title: "Client Partnership",
       description: "We work as your trusted partner, ensuring long-term success and growth.",
-      icon: <Users className="size-5" />,
+      icon: <Users className="size-6" />,
+      gradient: "from-orange-500 to-amber-500",
     },
     {
       title: "Quality Assurance",
       description: "Rigorous processes and procedures benchmarked against industry standards.",
-      icon: <Shield className="size-5" />,
+      icon: <Shield className="size-6" />,
+      gradient: "from-emerald-500 to-green-500",
     },
     {
       title: "Comprehensive Support",
       description: "End-to-end support from consultation to implementation and beyond.",
-      icon: <Layers className="size-5" />,
+      icon: <Layers className="size-6" />,
+      gradient: "from-pink-500 to-rose-500",
     },
     {
       title: "Dedicated Service",
       description: "Committed to serving our clients with utmost care and responsibility.",
-      icon: <Star className="size-5" />,
+      icon: <Award className="size-6" />,
+      gradient: "from-indigo-500 to-blue-500",
+    },
+  ]
+
+  const partners = [
+    { src: "/images/partners/datalogic.jpg?v=" + Date.now(), alt: "Datalogic", height: "h-14" },
+    { src: "/images/partners/compuprint-srl.jpg?v=" + Date.now(), alt: "Compuprint", height: "h-17" },
+    { src: "/images/partners/digital-check.png?v=" + Date.now(), alt: "Digital Check", height: "h-12" },
+    { src: "/images/partners/fujitsu.svg?v=" + Date.now(), alt: "Fujitsu", height: "h-14" },
+    { src: "/images/partners/globalis.png?v=" + Date.now(), alt: "Globalis", height: "h-17" },
+    { src: "/images/partners/nantian.png?v=" + Date.now(), alt: "Nantian", height: "h-17" },
+    { src: "/images/partners/printronix.png?v=" + Date.now(), alt: "Printronix", height: "h-17" },
+    { src: "/images/partners/tallygenicom.png?v=" + Date.now(), alt: "TallyGenicom", height: "h-17" },
+    { src: "/images/partners/troy.png?v=" + Date.now(), alt: "Troy", height: "h-12" },
+    { src: "/images/partners/tsc.png?v=" + Date.now(), alt: "TSC", height: "h-16" },
+  ]
+
+  const processSteps = [
+    {
+      step: "01",
+      title: "Consultation & Analysis",
+      description: "We begin by understanding your unique challenges and business objectives through comprehensive analysis.",
+      icon: <Sparkles className="size-5" />,
+    },
+    {
+      step: "02",
+      title: "Solution Design",
+      description: "Our experts design tailored solutions that align with your industry requirements and business goals.",
+      icon: <Target className="size-5" />,
+    },
+    {
+      step: "03",
+      title: "Implementation & Support",
+      description: "We deliver solutions with ongoing support to ensure sustainable success and continuous improvement.",
+      icon: <Zap className="size-5" />,
     },
   ]
 
   return (
-    <div className="flex min-h-[100dvh] flex-col">
+    <div className="flex min-h-[100dvh] flex-col overflow-x-hidden">
       <Navbar />
 
       <main className="flex-1">
         {/* Hero Section */}
-        <section className="w-full py-20 md:py-32 lg:py-40 overflow-hidden">
-          <div className="container px-4 md:px-6 relative">
-            <div className="absolute inset-0 -z-10 h-full w-full bg-white dark:bg-black bg-[linear-gradient(to_right,#f0f0f0_1px,transparent_1px),linear-gradient(to_bottom,#f0f0f0_1px,transparent_1px)] dark:bg-[linear-gradient(to_right,#1f1f1f_1px,transparent_1px),linear-gradient(to_bottom,#1f1f1f_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_110%)]"></div>
-
+        <section ref={heroRef} className="relative w-full min-h-[100vh] flex items-center justify-center py-20 md:py-32 lg:py-40 overflow-hidden">
+          {/* Animated Background */}
+          <div className="absolute inset-0 -z-10">
+            <motion.div 
+              style={{ y: backgroundY }}
+              className="absolute inset-0 bg-gradient-to-br from-background via-background to-primary/5 dark:to-primary/10"
+            />
+            <div className="absolute inset-0 bg-[linear-gradient(to_right,#8882_1px,transparent_1px),linear-gradient(to_bottom,#8882_1px,transparent_1px)] dark:bg-[linear-gradient(to_right,#ffffff08_1px,transparent_1px),linear-gradient(to_bottom,#ffffff08_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_80%_60%_at_50%_40%,#000_50%,transparent_100%)]" />
+            
+            {/* Floating Orbs */}
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-              className="text-center max-w-5xl mx-auto mb-12"
+              animate={{ 
+                scale: [1, 1.2, 1],
+                opacity: [0.3, 0.5, 0.3],
+              }}
+              transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+              className="absolute top-1/4 -left-32 w-96 h-96 bg-gradient-to-br from-primary/30 to-blue-500/20 rounded-full blur-3xl"
+            />
+            <motion.div
+              animate={{ 
+                scale: [1.2, 1, 1.2],
+                opacity: [0.2, 0.4, 0.2],
+              }}
+              transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+              className="absolute bottom-1/4 -right-32 w-96 h-96 bg-gradient-to-br from-violet-500/20 to-primary/30 rounded-full blur-3xl"
+            />
+            <motion.div
+              animate={{ 
+                scale: [1, 1.3, 1],
+                opacity: [0.15, 0.3, 0.15],
+              }}
+              transition={{ duration: 12, repeat: Infinity, ease: "easeInOut", delay: 2 }}
+              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-to-br from-cyan-500/10 to-emerald-500/10 rounded-full blur-3xl"
+            />
+          </div>
+
+          <div className="container px-4 md:px-6 relative">
+            <motion.div
+              initial="hidden"
+              animate={isHeroInView ? "visible" : "hidden"}
+              variants={containerVariants}
+              className="text-center max-w-5xl mx-auto"
             >
-              <h1 className="text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight mb-8 text-balance leading-[1.1]">
-                <span className="bg-gradient-to-r from-slate-900 via-slate-700 to-slate-900 dark:from-slate-100 dark:via-slate-300 dark:to-slate-100 bg-clip-text text-transparent">
-                  Petronas
+              {/* Main Heading */}
+              <motion.h1 
+                variants={itemVariants}
+                className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-extrabold tracking-tight mb-8 leading-[1.05]"
+              >
+                <span className="bg-gradient-to-r from-foreground via-foreground/90 to-foreground/70 bg-clip-text text-transparent">
+                  Excellence in
                 </span>
                 <br />
-                <span className="text-3xl md:text-4xl lg:text-5xl font-semibold text-slate-600 dark:text-slate-400 mt-2 block">
-                  Your Trusted Partner in Business Excellence
+                <span className="bg-gradient-to-r from-primary via-blue-500 to-primary bg-clip-text text-transparent bg-[length:200%_auto] animate-gradient">
+                  Business Solutions
                 </span>
-              </h1>
+              </motion.h1>
 
-              <div className="space-y-6 max-w-4xl mx-auto">
-                <p className="text-xl md:text-2xl text-slate-700 dark:text-slate-300 leading-relaxed font-medium text-pretty">
-                  At
-                  Petronas, we measure our success by our client success, we ensure that our solutions are aligned to
-                  help you with the business challenges faced in your industry and we deliver those solutions according
-                  to processes and procedures that have been benchmarked.
-                </p>
-                <p className="text-lg md:text-xl text-slate-600 dark:text-slate-400 leading-relaxed max-w-3xl mx-auto text-pretty">
-                  Our comprehensive approach combines industry expertise with proven methodologies to deliver
-                  exceptional results that drive your business forward.
-                </p>
-              </div>
+              {/* Subtitle */}
+              <motion.p 
+                variants={itemVariants}
+                className="text-lg md:text-xl lg:text-2xl text-muted-foreground max-w-3xl mx-auto mb-8 leading-relaxed"
+              >
+                At Petronas, we measure our success by your success. We deliver tailored solutions 
+                aligned with your business challenges, benchmarked against industry standards.
+              </motion.p>
 
-              <div className="flex flex-wrap items-center justify-center gap-6 mt-10 text-base md:text-lg font-medium">
-                <div className="flex items-center gap-2 text-slate-700 dark:text-slate-300">
-                  <Check className="size-5 text-emerald-600 dark:text-emerald-400" />
-                  <span>Proven expertise</span>
-                </div>
-                <div className="flex items-center gap-2 text-slate-700 dark:text-slate-300">
-                  <Check className="size-5 text-emerald-600 dark:text-emerald-400" />
-                  <span>Tailored solutions</span>
-                </div>
-                <div className="flex items-center gap-2 text-slate-700 dark:text-slate-300">
-                  <Check className="size-5 text-emerald-600 dark:text-emerald-400" />
-                  <span>Dedicated support</span>
-                </div>
-              </div>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 40 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.2 }}
-              className="relative mx-auto max-w-5xl"
-            >
-              <div className="rounded-xl overflow-hidden shadow-2xl border border-border/40 bg-gradient-to-b from-background to-muted/20">
-                <Image
-                  src="/images/design-mode/download_2_rwjqbr.png"
-                  width={1280}
-                  height={720}
-                  alt="Petronas dashboard"
-                  className="w-full h-auto"
-                  priority
-                />
-                <div className="absolute inset-0 rounded-xl ring-1 ring-inset ring-black/10 dark:ring-white/10"></div>
-              </div>
-              <div className="absolute -bottom-6 -right-6 -z-10 h-[300px] w-[300px] rounded-full bg-gradient-to-br from-primary/30 to-secondary/30 blur-3xl opacity-70"></div>
-              <div className="absolute -top-6 -left-6 -z-10 h-[300px] w-[300px] rounded-full bg-gradient-to-br from-secondary/30 to-primary/30 blur-3xl opacity-70"></div>
-            </motion.div>
-          </div>
-        </section>
-
-        {/* Logos Section */}
-        <section className="w-full py-12 border-y bg-muted/30">
-          <div className="container px-4 md:px-6">
-            <div className="flex flex-col items-center justify-center space-y-4 text-center">
-              <p className="text-sm font-medium text-muted-foreground">Our Partners</p>
-
-              <div className="flex flex-wrap items-center justify-center gap-6 md:gap-8 lg:gap-12 max-w-7xl mx-auto">
+              {/* Feature Pills */}
+              <motion.div 
+                variants={itemVariants}
+                className="flex flex-wrap items-center justify-center gap-3 md:gap-4 mb-10"
+              >
                 {[
-                  { src: "/images/partners/datalogic.jpg", alt: "Datalogic" },
-                  { src: "/images/partners/compuprint-srl.jpg", alt: "Compuprint" },
-                  { src: "/images/partners/digital-check.png", alt: "Digital Check" },
-                  { src: "/images/partners/fujitsu.svg", alt: "Fujitsu" },
-                  { src: "/images/partners/globalis.png", alt: "Globalis" },
-                  { src: "/images/partners/nantian.png", alt: "Nantian" },
-                  { src: "/images/partners/printronix.png", alt: "Printronix" },
-                  { src: "/images/partners/tallygenicom.png", alt: "TallyGenicom" },
-                  { src: "/images/partners/troy.png", alt: "Troy" },
-                  { src: "/images/partners/tsc.png", alt: "TSC" },
-                ].map((partner, idx) => (
-                  <div
-                    key={`partner-${idx}`}
-                    className="flex h-16 md:h-20 w-24 md:w-32 lg:w-36 items-center justify-center flex-shrink-0"
+                  { icon: <Check className="size-4" />, text: "Proven Expertise" },
+                  { icon: <Check className="size-4" />, text: "Tailored Solutions" },
+                  { icon: <Check className="size-4" />, text: "Dedicated Support" },
+                ].map((item, idx) => (
+                  <motion.div
+                    key={idx}
+                    whileHover={{ scale: 1.05, y: -2 }}
+                    className="flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-500/10 dark:bg-emerald-500/20 border border-emerald-500/20 text-emerald-700 dark:text-emerald-400"
                   >
-                    <Image
-                      src={partner.src || "/placeholder.svg?height=80&width=160&query=partner%20logo%20placeholder"}
-                      alt={partner.alt}
-                      width={200}
-                      height={80}
-                      className="h-10 md:h-12 lg:h-14 w-auto object-contain"
-                      priority={idx < 5}
-                    />
-                  </div>
+                    {item.icon}
+                    <span className="text-sm font-medium">{item.text}</span>
+                  </motion.div>
                 ))}
-              </div>
-            </div>
+              </motion.div>
+
+              {/* CTA Buttons */}
+              <motion.div 
+                variants={itemVariants}
+                className="flex flex-col sm:flex-row items-center justify-center gap-4"
+              >
+                <Button 
+                  size="lg" 
+                  className="rounded-full h-14 px-8 text-base font-semibold shadow-lg shadow-primary/25 hover:shadow-xl hover:shadow-primary/30 transition-all duration-300 group"
+                  asChild
+                >
+                  <Link href="/contact">
+                    Get Started
+                    <ArrowRight className="ml-2 size-5 group-hover:translate-x-1 transition-transform" />
+                  </Link>
+                </Button>
+                <Button 
+                  size="lg" 
+                  variant="outline" 
+                  className="rounded-full h-14 px-8 text-base font-semibold border-2 hover:bg-primary/5 transition-all duration-300"
+                  asChild
+                >
+                  <Link href="/services-clients">
+                    Our Services
+                  </Link>
+                </Button>
+              </motion.div>
+            </motion.div>
           </div>
         </section>
 
-        {/* Features Section */}
-        <section id="features" className="w-full py-20 md:py-32">
+
+        {/* Partners Section */}
+        <section className="w-full py-16 md:py-20 border-y bg-muted/30 dark:bg-muted/10 relative overflow-hidden">
           <div className="container px-4 md:px-6">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.5 }}
-              className="flex flex-col items-center justify-center space-y-4 text-center mb-12"
+              transition={{ duration: 0.6 }}
+              className="text-center mb-10"
             >
-              <Badge className="rounded-full px-4 py-1.5 text-sm font-medium" variant="secondary">
+              <p className="text-sm font-semibold text-primary uppercase tracking-wider mb-2">Trusted Partnerships</p>
+              <h2 className="text-2xl md:text-3xl font-bold">Our Global Partners</h2>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="flex flex-wrap items-center justify-center gap-8 md:gap-12 max-w-6xl mx-auto"
+            >
+              {partners.map((partner, idx) => (
+                <motion.div
+                  key={`partner-${idx}`}
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: idx * 0.05 }}
+                  whileHover={{ scale: 1.1, y: -4 }}
+                  className="flex h-20 md:h-24 w-32 md:w-40 items-center justify-center transition-all duration-300"
+                >
+                  <Image
+                    src={partner.src}
+                    alt={partner.alt}
+                    width={200}
+                    height={80}
+                    className={`${partner.height} w-auto object-contain`}
+                    quality={100}
+                  />
+                </motion.div>
+              ))}
+            </motion.div>
+          </div>
+        </section>
+
+        {/* Features Section */}
+        <section ref={featuresRef} id="features" className="w-full py-20 md:py-32 relative">
+          <div className="absolute inset-0 -z-10">
+            <div className="absolute top-0 left-1/4 w-72 h-72 bg-primary/5 rounded-full blur-3xl" />
+            <div className="absolute bottom-0 right-1/4 w-72 h-72 bg-violet-500/5 rounded-full blur-3xl" />
+          </div>
+
+          <div className="container px-4 md:px-6">
+            <motion.div
+              initial="hidden"
+              animate={isFeaturesInView ? "visible" : "hidden"}
+              variants={fadeInUp}
+              className="text-center mb-16"
+            >
+              <Badge className="mb-4 px-4 py-1.5 text-sm font-medium" variant="secondary">
+                <Star className="size-4 mr-2" />
                 Our Approach
               </Badge>
-              <h2 className="text-3xl md:text-4xl font-bold tracking-tight">Why Choose Petronas</h2>
-              <p className="max-w-[800px] text-muted-foreground md:text-lg">
-                Our commitment to excellence and client success drives everything we do. We deliver solutions that are
-                not just effective, but transformative for your business.
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight mb-6">
+                Why Choose{" "}
+                <span className="bg-gradient-to-r from-primary to-blue-500 bg-clip-text text-transparent">
+                  Petronas
+                </span>
+              </h2>
+              <p className="max-w-2xl mx-auto text-lg text-muted-foreground leading-relaxed">
+                Our commitment to excellence and client success drives everything we do. 
+                We deliver solutions that are not just effective, but transformative.
               </p>
             </motion.div>
 
             <motion.div
-              variants={container}
               initial="hidden"
-              whileInView="show"
-              viewport={{ once: true }}
+              animate={isFeaturesInView ? "visible" : "hidden"}
+              variants={containerVariants}
               className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3"
             >
               {features.map((feature, i) => (
-                <motion.div key={i} variants={item}>
-                  <Card className="h-full overflow-hidden border-border/40 bg-gradient-to-b from-background to-muted/10 backdrop-blur transition-all hover:shadow-md">
-                    <CardContent className="p-6 flex flex-col h-full">
-                      <div className="size-10 rounded-full bg-primary/10 dark:bg-primary/20 flex items-center justify-center text-primary mb-4">
+                <motion.div key={i} variants={itemVariants}>
+                  <Card className="group h-full overflow-hidden border-border/50 bg-gradient-to-b from-background to-muted/20 backdrop-blur hover:shadow-xl hover:shadow-primary/5 hover:border-primary/30 transition-all duration-500">
+                    <CardContent className="p-6 md:p-8">
+                      <motion.div 
+                        whileHover={{ scale: 1.1, rotate: 5 }}
+                        transition={{ type: "spring", stiffness: 300 }}
+                        className={`size-14 rounded-2xl bg-gradient-to-br ${feature.gradient} flex items-center justify-center text-white mb-6 shadow-lg`}
+                      >
                         {feature.icon}
-                      </div>
-                      <h3 className="text-xl font-bold mb-2">{feature.title}</h3>
-                      <p className="text-muted-foreground">{feature.description}</p>
+                      </motion.div>
+                      <h3 className="text-xl font-bold mb-3 group-hover:text-primary transition-colors duration-300">
+                        {feature.title}
+                      </h3>
+                      <p className="text-muted-foreground leading-relaxed">
+                        {feature.description}
+                      </p>
                     </CardContent>
                   </Card>
                 </motion.div>
@@ -217,64 +377,68 @@ export default function LandingPage() {
           </div>
         </section>
 
-        {/* How It Works Section */}
-        <section className="w-full py-20 md:py-32 bg-muted/30 relative overflow-hidden">
-          <div className="absolute inset-0 -z-10 h-full w-full bg-white dark:bg-black bg-[linear-gradient(to_right,#f0f0f0_1px,transparent_1px),linear-gradient(to_bottom,#f0f0f0_1px,transparent_1px)] dark:bg-[linear-gradient(to_right,#1f1f1f_1px,transparent_1px),linear-gradient(to_bottom,#1f1f1f_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_80%_50%_at_50%_50%,#000_40%,transparent_100%)]"></div>
+
+        {/* Process Section */}
+        <section ref={processRef} className="w-full py-20 md:py-32 bg-muted/30 dark:bg-muted/10 relative overflow-hidden">
+          {/* Background Pattern */}
+          <div className="absolute inset-0 -z-10">
+            <div className="absolute inset-0 bg-[linear-gradient(to_right,#8882_1px,transparent_1px),linear-gradient(to_bottom,#8882_1px,transparent_1px)] dark:bg-[linear-gradient(to_right,#ffffff05_1px,transparent_1px),linear-gradient(to_bottom,#ffffff05_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_80%_50%_at_50%_50%,#000_40%,transparent_100%)]" />
+          </div>
 
           <div className="container px-4 md:px-6 relative">
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5 }}
-              className="flex flex-col items-center justify-center space-y-4 text-center mb-16"
+              initial="hidden"
+              animate={isProcessInView ? "visible" : "hidden"}
+              variants={fadeInUp}
+              className="text-center mb-16"
             >
-              <Badge className="rounded-full px-4 py-1.5 text-sm font-medium" variant="secondary">
+              <Badge className="mb-4 px-4 py-1.5 text-sm font-medium" variant="secondary">
+                <Globe className="size-4 mr-2" />
                 Our Process
               </Badge>
-              <h2 className="text-3xl md:text-4xl font-bold tracking-tight">Proven Methodology, Exceptional Results</h2>
-              <p className="max-w-[800px] text-muted-foreground md:text-lg">
-                Our structured approach ensures that every solution is tailored to your specific needs and delivered
-                with the highest standards of quality and professionalism.
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight mb-6">
+                Proven Methodology,{" "}
+                <span className="bg-gradient-to-r from-primary to-blue-500 bg-clip-text text-transparent">
+                  Exceptional Results
+                </span>
+              </h2>
+              <p className="max-w-2xl mx-auto text-lg text-muted-foreground leading-relaxed">
+                Our structured approach ensures every solution is tailored to your specific needs 
+                and delivered with the highest standards of quality.
               </p>
             </motion.div>
 
-            <div className="grid md:grid-cols-3 gap-8 md:gap-12 relative">
-              <div className="hidden md:block absolute top-1/2 left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-border to-transparent -translate-y-1/2 z-0"></div>
+            <div className="grid md:grid-cols-3 gap-8 md:gap-6 lg:gap-12 relative">
+              {/* Connection Line */}
+              <div className="hidden md:block absolute top-24 left-[20%] right-[20%] h-0.5 bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
 
-              {[
-                {
-                  step: "01",
-                  title: "Consultation & Analysis",
-                  description:
-                    "We begin by understanding your unique challenges and business objectives through comprehensive analysis.",
-                },
-                {
-                  step: "02",
-                  title: "Solution Design",
-                  description:
-                    "Our experts design tailored solutions that align with your industry requirements and business goals.",
-                },
-                {
-                  step: "03",
-                  title: "Implementation & Support",
-                  description:
-                    "We deliver solutions with ongoing support to ensure sustainable success and continuous improvement.",
-                },
-              ].map((step, i) => (
+              {processSteps.map((step, i) => (
                 <motion.div
                   key={i}
-                  initial={{ opacity: 0, y: 20 }}
+                  initial={{ opacity: 0, y: 40 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: i * 0.1 }}
-                  className="relative z-10 flex flex-col items-center text-center space-y-4"
+                  transition={{ duration: 0.6, delay: i * 0.2 }}
+                  className="relative z-10 flex flex-col items-center text-center group"
                 >
-                  <div className="flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-br from-primary to-primary/70 text-primary-foreground text-xl font-bold shadow-lg">
-                    {step.step}
-                  </div>
-                  <h3 className="text-xl font-bold">{step.title}</h3>
-                  <p className="text-muted-foreground">{step.description}</p>
+                  <motion.div
+                    whileHover={{ scale: 1.1, rotate: -5 }}
+                    transition={{ type: "spring", stiffness: 300 }}
+                    className="relative mb-8"
+                  >
+                    <div className="size-20 md:size-24 rounded-3xl bg-gradient-to-br from-primary to-blue-600 text-primary-foreground flex items-center justify-center text-2xl md:text-3xl font-bold shadow-xl shadow-primary/25 group-hover:shadow-2xl group-hover:shadow-primary/30 transition-shadow duration-300">
+                      {step.step}
+                    </div>
+                    <div className="absolute -bottom-2 -right-2 size-8 rounded-full bg-background border-2 border-primary flex items-center justify-center">
+                      {step.icon}
+                    </div>
+                  </motion.div>
+                  <h3 className="text-xl md:text-2xl font-bold mb-4 group-hover:text-primary transition-colors duration-300">
+                    {step.title}
+                  </h3>
+                  <p className="text-muted-foreground leading-relaxed max-w-sm">
+                    {step.description}
+                  </p>
                 </motion.div>
               ))}
             </div>
@@ -282,92 +446,164 @@ export default function LandingPage() {
         </section>
 
         {/* CTA Section */}
-        <section className="w-full py-20 md:py-32 bg-gradient-to-br from-primary to-primary/80 text-primary-foreground relative overflow-hidden">
-          <div className="absolute inset-0 -z-10 bg-[linear-gradient(to_right,#ffffff10_1px,transparent_1px),linear-gradient(to_bottom,#ffffff10_1px,transparent_1px)] bg-[size:4rem_4rem]"></div>
-          <div className="absolute -top-24 -left-24 w-64 h-64 bg-white/10 rounded-full blur-3xl"></div>
-          <div className="absolute -bottom-24 -right-24 w-64 h-64 bg-white/10 rounded-full blur-3xl"></div>
+        <section ref={ctaRef} className="w-full py-20 md:py-32 relative overflow-hidden">
+          {/* Gradient Background */}
+          <div className="absolute inset-0 bg-gradient-to-br from-primary via-primary/90 to-blue-600" />
+          
+          {/* Pattern Overlay */}
+          <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff08_1px,transparent_1px),linear-gradient(to_bottom,#ffffff08_1px,transparent_1px)] bg-[size:4rem_4rem]" />
+          
+          {/* Animated Orbs */}
+          <motion.div
+            animate={{ 
+              scale: [1, 1.2, 1],
+              opacity: [0.1, 0.2, 0.1],
+            }}
+            transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+            className="absolute -top-24 -left-24 w-96 h-96 bg-white rounded-full blur-3xl"
+          />
+          <motion.div
+            animate={{ 
+              scale: [1.2, 1, 1.2],
+              opacity: [0.1, 0.2, 0.1],
+            }}
+            transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+            className="absolute -bottom-24 -right-24 w-96 h-96 bg-white rounded-full blur-3xl"
+          />
 
           <div className="container px-4 md:px-6 relative">
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5 }}
-              className="flex flex-col items-center justify-center space-y-6 text-center"
+              initial="hidden"
+              animate={isCtaInView ? "visible" : "hidden"}
+              variants={containerVariants}
+              className="flex flex-col items-center justify-center text-center max-w-4xl mx-auto"
             >
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight">
+              <motion.div variants={itemVariants}>
+                <Badge className="mb-6 px-4 py-2 bg-white/20 text-white border-white/30 hover:bg-white/30 transition-colors">
+                  <Sparkles className="size-4 mr-2" />
+                  Start Your Journey
+                </Badge>
+              </motion.div>
+
+              <motion.h2 
+                variants={itemVariants}
+                className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold tracking-tight text-white mb-6"
+              >
                 Ready to Partner with Excellence?
-              </h2>
-              <p className="mx-auto max-w-[700px] text-primary-foreground/80 md:text-xl">
-                Join the many satisfied clients who have transformed their business with our proven solutions and
-                dedicated support. Let us help you achieve your goals.
-              </p>
-              <div className="flex justify-center mt-4">
-                <Button size="lg" variant="secondary" className="rounded-full h-12 px-8 text-base" asChild>
+              </motion.h2>
+
+              <motion.p 
+                variants={itemVariants}
+                className="text-lg md:text-xl text-white/80 max-w-2xl mb-10 leading-relaxed"
+              >
+                Join the many satisfied clients who have transformed their business with our 
+                proven solutions and dedicated support. Let us help you achieve your goals.
+              </motion.p>
+
+              <motion.div 
+                variants={itemVariants}
+                className="flex flex-col sm:flex-row gap-4"
+              >
+                <Button 
+                  size="lg" 
+                  variant="secondary" 
+                  className="rounded-full h-14 px-8 text-base font-semibold shadow-xl hover:shadow-2xl transition-all duration-300 group"
+                  asChild
+                >
                   <Link href="/contact">
-                  Get In Touch
-                  <ArrowRight className="ml-2 size-4" />
+                    Get In Touch
+                    <ArrowRight className="ml-2 size-5 group-hover:translate-x-1 transition-transform" />
                   </Link>
                 </Button>
-              </div>
+                <Button 
+                  size="lg" 
+                  variant="outline" 
+                  className="rounded-full h-14 px-8 text-base font-semibold bg-transparent border-2 border-white/30 text-white hover:bg-white/10 hover:border-white/50 transition-all duration-300"
+                  asChild
+                >
+                  <Link href="/products">
+                    View Products
+                  </Link>
+                </Button>
+              </motion.div>
             </motion.div>
           </div>
         </section>
       </main>
+
+      {/* Footer */}
       <footer className="w-full border-t bg-background/95 backdrop-blur-sm">
-        <div className="container flex flex-col gap-8 px-4 py-10 md:px-6 lg:py-16">
-          <div className="grid gap-8 sm:grid-cols-2 md:grid-cols-3">
-            <div className="space-y-4">
-              <div className="flex items-center gap-2 font-bold">
-                <div className="size-8 rounded-lg bg-gradient-to-br from-primary to-primary/70 flex items-center justify-center text-primary-foreground">
-                  P
-                </div>
-                <span>Petronas</span>
-              </div>
-              <p className="text-sm text-muted-foreground">
-                Your trusted partner in business excellence. We deliver solutions that drive your business forward.
+        <div className="container flex flex-col gap-8 px-4 py-12 md:px-6 lg:py-16">
+          <div className="grid gap-8 sm:grid-cols-2 md:grid-cols-3 items-start">
+            {/* Brand */}
+            <div className="space-y-4 flex flex-col">
+              <Link href="/" className="block -mt-16">
+                <Image
+                  src="/images/design-mode/Untitled-design-11-removebg-preview.png"
+                  alt="Petronas Kuwait"
+                  width={200}
+                  height={80}
+                  className="h-36 w-auto object-top"
+                />
+              </Link>
+              <p className="text-sm text-muted-foreground max-w-xs leading-relaxed -mt-2">
+                Your trusted partner in business excellence. We deliver solutions that drive your business forward with proven expertise and dedicated support.
               </p>
             </div>
+
+            {/* Pages */}
             <div className="space-y-4">
-              <h4 className="text-sm font-bold">Pages</h4>
-              <ul className="space-y-2 text-sm">
-                <li>
-                  <Link href="/" className="text-muted-foreground hover:text-foreground transition-colors">
-                    Home
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/about" className="text-muted-foreground hover:text-foreground transition-colors">
-                    About Us
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/products" className="text-muted-foreground hover:text-foreground transition-colors">
-                    Products
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/services-clients" className="text-muted-foreground hover:text-foreground transition-colors">
-                    Services & Clients
-                  </Link>
-                </li>
+              <h4 className="text-sm font-bold uppercase tracking-wider">Pages</h4>
+              <ul className="space-y-3 text-sm">
+                {[
+                  { href: "/", label: "Home" },
+                  { href: "/about", label: "About Us" },
+                  { href: "/products", label: "Products" },
+                  { href: "/services-clients", label: "Services & Clients" },
+                ].map((link) => (
+                  <li key={link.href}>
+                    <Link 
+                      href={link.href} 
+                      className="text-muted-foreground hover:text-primary transition-colors duration-200"
+                    >
+                      {link.label}
+                    </Link>
+                  </li>
+                ))}
               </ul>
             </div>
+
+            {/* Contact */}
             <div className="space-y-4">
-              <h4 className="text-sm font-bold">More</h4>
-              <ul className="space-y-2 text-sm">
+              <h4 className="text-sm font-bold uppercase tracking-wider">Contact</h4>
+              <ul className="space-y-3 text-sm">
                 <li>
-                  <Link href="/contact" className="text-muted-foreground hover:text-foreground transition-colors">
+                  <Link 
+                    href="/contact" 
+                    className="text-muted-foreground hover:text-primary transition-colors duration-200"
+                  >
                     Contact Us
                   </Link>
+                </li>
+                <li className="text-muted-foreground">
+                  sales@petronasgtc.com
+                </li>
+                <li className="text-muted-foreground">
+                  +965 22618183
                 </li>
               </ul>
             </div>
           </div>
-          <div className="flex justify-center items-center border-t border-border/40 pt-8">
-            <p className="text-xs text-muted-foreground">
-              &copy; {new Date().getFullYear()} Petronas. All rights reserved.
+
+          {/* Bottom Bar */}
+          <div className="flex flex-col md:flex-row justify-between items-center gap-4 border-t border-border/40 pt-8">
+            <p className="text-sm text-muted-foreground">
+              © {new Date().getFullYear()} Petronas Kuwait. All rights reserved.
             </p>
+            <div className="flex items-center gap-6 text-sm text-muted-foreground">
+              <Link href="#" className="hover:text-primary transition-colors">Privacy Policy</Link>
+              <Link href="#" className="hover:text-primary transition-colors">Terms of Service</Link>
+            </div>
           </div>
         </div>
       </footer>

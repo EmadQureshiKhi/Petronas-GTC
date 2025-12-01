@@ -1,30 +1,36 @@
-# Saas Landing Page
+# Petronas Kuwait
 
-*Automatically synced with your [v0.app](https://v0.app) deployments*
+*Professional Business Solutions Platform*
 
 [![Deployed on Vercel](https://img.shields.io/badge/Deployed%20on-Vercel-black?style=for-the-badge&logo=vercel)](https://vercel.com/emadqureshikhis-projects/v0-saas-landing-page)
 [![Built with v0](https://img.shields.io/badge/Built%20with-v0.app-black?style=for-the-badge)](https://v0.app/chat/projects/cHbSaUJimMt)
 
 ## Overview
 
-This repository will stay in sync with your deployed chats on [v0.app](https://v0.app).
-Any changes you make to your deployed app will be automatically pushed to this repository from [v0.app](https://v0.app).
+Petronas Kuwait is a professional business solutions platform showcasing our services, products, and client success stories. Built with Next.js and modern web technologies for optimal performance and user experience.
 
-## Deployment
+## Features
 
-Your project is live at:
+- Responsive design for all devices
+- Dark/Light mode support
+- Smooth animations and transitions
+- Contact form integration
+- Product showcase
+- Client testimonials
+- Services overview
 
-**[https://vercel.com/emadqureshikhis-projects/v0-saas-landing-page](https://vercel.com/emadqureshikhis-projects/v0-saas-landing-page)**
+## Getting Started
 
-## Build your app
+```bash
+npm install
+npm run dev
+```
 
-Continue building your app on:
+Open [http://localhost:3000](http://localhost:3000) to view the site.
 
-**[https://v0.app/chat/projects/cHbSaUJimMt](https://v0.app/chat/projects/cHbSaUJimMt)**
+## Build for Production
 
-## How It Works
-
-1. Create and modify your project using [v0.app](https://v0.app)
-2. Deploy your chats from the v0 interface
-3. Changes are automatically pushed to this repository
-4. Vercel deploys the latest version from this repository
+```bash
+npm run build
+npm start
+```
